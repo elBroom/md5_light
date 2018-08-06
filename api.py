@@ -18,6 +18,7 @@ def submit_task():
     calculate_hash_by_url_task.delay(task['id'])
     return jsonify({'id': task['id']})
 
+
 @app.route('/check/<task_uuid>', methods=['GET'])
 def check_task(task_uuid):
     task = Task.query.filter_by(id=task_uuid).first()
@@ -30,4 +31,3 @@ def check_task(task_uuid):
         responce['md5'] = task.md5
 
     return jsonify(**responce)
-

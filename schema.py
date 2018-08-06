@@ -5,14 +5,19 @@ from marshmallow import fields, post_load
 from md5_checker import ma
 
 
+def get_task_id():
+    return str(uuid.uuid4())
+
+
 class TaskSchema(ma.Schema):
-    id = fields.UUID(dump_only=True)
+    id = fields.String(dump_only=True)
     url = fields.Url(required=True)
     email = fields.Email()
 
     @post_load
     def create_task(self, data):
-        data['id'] = uuid.uuid4()
+        data['id'] = get_task_id()
         return data
+
 
 task_schema = TaskSchema()

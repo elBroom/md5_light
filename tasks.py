@@ -26,6 +26,7 @@ def calculate_hash_by_url_task(task_uuid):
     task.finished_at = func.now()
     db.session.commit()
 
+
 def get_hash(url):
     time.sleep(60)
     return hashlib.md5(url.encode('utf-8')).hexdigest()

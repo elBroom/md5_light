@@ -1,6 +1,5 @@
 from enum import Enum
 
-from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import func
 
 from md5_checker import db
@@ -19,7 +18,7 @@ class Task(db.Model):
     started_at = db.Column(db.DateTime)
     finished_at = db.Column(db.DateTime)
 
-    url = db.Column(db.String(1<<15), nullable=False)
+    url = db.Column(db.String(1 << 15), nullable=False)
     email = db.Column(db.String(120))
     status = db.Column(db.Enum(StatusType), default=StatusType.CREATED, nullable=False)
     md5 = db.Column(db.String(32))
