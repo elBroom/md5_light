@@ -2,7 +2,7 @@ from enum import Enum
 
 from sqlalchemy.sql import func
 
-from md5_checker import db
+from md5_light import db
 
 
 class StatusType(str, Enum):

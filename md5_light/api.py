@@ -1,9 +1,9 @@
 from flask import request, jsonify
 
-from md5_checker import app, db
-from md5_checker.models import Task, StatusType
-from md5_checker.schema import task_schema
-from md5_checker.tasks import calculate_hash_by_url_task
+from md5_light import app, db
+from md5_light.models import Task, StatusType
+from md5_light.schema import task_schema
+from md5_light.tasks import calculate_hash_by_url_task
 
 
 @app.route('/submit', methods=['POST'])

@@ -1,8 +1,8 @@
 from sqlalchemy.sql import func
 
-from md5_checker import app, celery, db
-from md5_checker.models import Task, StatusType
-from md5_checker.utils import (
+from md5_light import app, celery, db
+from md5_light.models import Task, StatusType
+from md5_light.utils import (
     DownloadFileException, 
     calculate_hash_by_file, 
     dowanload_file, 

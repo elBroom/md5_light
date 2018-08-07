@@ -2,7 +2,7 @@ import uuid
 
 from marshmallow import fields, post_load
 
-from md5_checker import ma
+from md5_light import ma
 
 
 def get_task_id():

@@ -6,8 +6,8 @@ def check_response(response, data=None, status_code=200):
 
 # POST
 def test_create_task(test_client, init_database, mocker):
-    mocker.patch('md5_checker.tasks.calculate_hash_by_url_task')
-    mocker.patch('md5_checker.schema.get_task_id', lambda: 'test_create_task')
+    mocker.patch('md5_light.tasks.calculate_hash_by_url_task')
+    mocker.patch('md5_light.schema.get_task_id', lambda: 'test_create_task')
 
     response = test_client.post(
         '/submit', data={'email': 'user@example.com', 'url': 'http://site.com/file.txt'},
@@ -16,8 +16,8 @@ def test_create_task(test_client, init_database, mocker):
 
 
 def test_create_task_wo_email(test_client, init_database, mocker):
-    mocker.patch('md5_checker.tasks.calculate_hash_by_url_task')
-    mocker.patch('md5_checker.schema.get_task_id', lambda: 'test_create_task_wo_email')
+    mocker.patch('md5_light.tasks.calculate_hash_by_url_task')
+    mocker.patch('md5_light.schema.get_task_id', lambda: 'test_create_task_wo_email')
 
     response = test_client.post(
         '/submit', data={'url': 'http://site.com/file.txt'},

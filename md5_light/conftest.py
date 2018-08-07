@@ -1,7 +1,7 @@
 import pytest
-from md5_checker import api, db
 
-from md5_checker.models import StatusType, Task
+from md5_light import api, db
+from md5_light.models import StatusType, Task
 
 
 @pytest.fixture(scope='module')
