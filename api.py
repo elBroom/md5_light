@@ -19,9 +19,11 @@ def submit_task():
     return jsonify({'id': task['id']})
 
 
-@app.route('/check/<task_uuid>', methods=['GET'])
-def check_task(task_uuid):
-    task = Task.query.filter_by(id=task_uuid).first()
+@app.route('/check', methods=['GET'])
+def check_task():
+    task = None
+    if request.args.get('id'):
+        task = Task.query.filter_by(id=request.args.get('id')).first()
     if not task:
         return jsonify({'status': 'not found'}), 404
 

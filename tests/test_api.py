@@ -53,25 +53,30 @@ def test_create_wo_data(test_client, init_database):
 
 # GET
 def test_get_created_task(test_client, init_database):
-    response = test_client.get('/check/created123')
+    response = test_client.get('/check?id=created123')
     check_response(response, {'status': 'created'})
 
 
 def test_get_running_task(test_client, init_database):
-    response = test_client.get('/check/running123')
+    response = test_client.get('/check?id=running123')
     check_response(response, {'status': 'running'})
 
 
 def test_get_fail_task(test_client, init_database):
-    response = test_client.get('/check/fail123')
+    response = test_client.get('/check?id=fail123')
     check_response(response, {'status': 'fail'})
 
 
 def test_get_done_task(test_client, init_database):
-    response = test_client.get('/check/done123')
+    response = test_client.get('/check?id=done123')
     check_response(response, {'status': 'done', 'url': 'http://site.com/file.txt', 'md5': 'hash'})
 
 
 def test_get_not_found_task(test_client, init_database):
-    response = test_client.get('/check/notfound123')
+    response = test_client.get('/check?id=notfound123')
+    check_response(response, {'status': 'not found'}, 404)
+
+
+def test_get_wo_id_task(test_client, init_database):
+    response = test_client.get('/check')
     check_response(response, {'status': 'not found'}, 404)
