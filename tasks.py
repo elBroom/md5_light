@@ -19,7 +19,7 @@ def calculate_hash_by_url_task(task_uuid):
 
     try:
         task.md5 = get_hash(task.url)
-    except Exception:
+    except Exception as e:
         task.status = StatusType.FAIL
     else:
         task.status = StatusType.DONE
