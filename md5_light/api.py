@@ -16,14 +16,14 @@ def submit_task():
     db.session.commit()
 
     calculate_hash_by_url_task.delay(task['id'])
-    return jsonify({'id': task['id']})
+    return jsonify({'id': task['id']}), 201
 
 
 @app.route('/check', methods=['GET'])
 def check_task():
     task = None
-    if request.args.get('id'):
-        task = Task.query.filter_by(id=request.args.get('id')).first()
+    if 'id' in request.args:
+        task = Task.query.filter_by(id=request.args['id']).first()
     if not task:
         return jsonify({'status': 'not found'}), 404
 

@@ -3,7 +3,6 @@ import os
 import requests
 import shutil
 import smtplib
-import time
 import uuid
 
 
@@ -21,7 +20,7 @@ def dowanload_file(url):
         path = os.path.join('/tmp', 'dowanload_file_' + str(uuid.uuid4()))
         with open(path, 'wb') as f:
             r.raw.decode_content = True
-            shutil.copyfileobj(r.raw, f) 
+            shutil.copyfileobj(r.raw, f)
         return path
     raise DownloadFileException
 

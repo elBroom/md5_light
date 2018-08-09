@@ -1,12 +1,11 @@
 import pytest
 
-from md5_light import api, db
+from md5_light import app, db
 from md5_light.models import StatusType, Task
 
 
 @pytest.fixture(scope='module')
 def test_client():
-    app = api.app
     app.config['SQLALCHEMY_DATABASE_URI'] = app.config['SQLALCHEMY_DATABASE_URI_TEST']
     testing_client = app.test_client()
 

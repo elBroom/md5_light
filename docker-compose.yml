@@ -1,0 +1,41 @@
+version: "2"
+services:
+  app:
+    build: .
+    container_name: md5_light_app
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/code
+    command: uwsgi --ini /code/md5_light/uwsgi.ini
+    depends_on:
+      - mysql
+      - rabbit
+  celery:
+    build: .
+    container_name: md5_light_celery
+    volumes:
+      - .:/code
+    command: celery -A md5_light.celery worker --loglevel=info
+    depends_on:
+      - mysql
+      - rabbit
+  mysql:
+    image: mysql:5.6
+    container_name: md5_light_mysql
+    ports:
+      - "3306:3306"
+    volumes:
+      - .:/docker-entrypoint-initdb.d
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
+      - MYSQL_DATABASE=md5_light
+  rabbit:
+    image: rabbitmq:3-management
+    container_name: md5_light_rabbit
+    ports:
+      - "5672:5672"
+    hostname: "rabbit"
+    environment:
+      - RABBITMQ_DEFAULT_USER=user
+      - RABBITMQ_DEFAULT_PASS=password

@@ -13,3 +13,6 @@ celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'])
 celery.conf.update(app.config)
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
+
+# Registration api
+from md5_light.api import app

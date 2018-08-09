@@ -12,7 +12,7 @@ def test_create_task(test_client, init_database, mocker):
     response = test_client.post(
         '/submit', data={'email': 'user@example.com', 'url': 'http://site.com/file.txt'},
     )
-    check_response(response, {'id': 'test_create_task'})
+    check_response(response, {'id': 'test_create_task'}, 201)
 
 
 def test_create_task_wo_email(test_client, init_database, mocker):
@@ -22,7 +22,7 @@ def test_create_task_wo_email(test_client, init_database, mocker):
     response = test_client.post(
         '/submit', data={'url': 'http://site.com/file.txt'},
     )
-    check_response(response, {'id': 'test_create_task_wo_email'})
+    check_response(response, {'id': 'test_create_task_wo_email'}, 201)
 
 
 def test_create_task_invalid_email(test_client, init_database):
