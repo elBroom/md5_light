@@ -1,0 +1,20 @@
+language: python
+services:
+  - docker
+
+before_install:
+  # Docker Compose Install 
+  - curl -L https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+    
+install:
+  - docker-compose build
+  - docker-compose up -di
+
+script: docker exec -it md5_light_app py.test --cov=md5_light -vv
+
+after_script:
+  - docker-compose stop
+  - docker-compose rm -f
+
