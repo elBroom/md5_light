@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/elBroom/md5_light.svg?branch=master)](https://travis-ci.com/elBroom/md5_light)
+
 MD5 light
 ============
 Веб-сервис, позволяющий посчитать MD5-хеш от файла, расположенного в интернете
